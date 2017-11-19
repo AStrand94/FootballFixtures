@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Football Fixtures</string>
+    <string name="competitions">Competitions</string>
+    <string name="table">Table</string>
+    <string name="fixtures">Fixtures</string>
+    <string name="open_drawer">Open drawer</string>
+    <string name="close_drawer">Close drawer</string>
+    <string name="matchday">Matchday</string>
+    <string name="team_name">Team name</string>
+    <string name="team_name_short">Short name</string>
+    <string name="favourite_club">Mark as favourite?</string>
+    <string name="sharedPreferences">shared</string>
+    <string name="fav_set_key">favSet</string>
+    <string name="error">Error</string>
+    <string name="error_try_again">An error occured, please try again</string>
+    <string name="favourite_clubs">Favorite clubs</string>
+    <string name="todays_fixtures">Todays Fixtures</string>
+    <string name="in_play">Playing</string>
+    <string name="timed">Scheduled</string>
+    <string name="finished">Finished</string>
+    <string name="favorite_clubs_title">Favorite clubs</string>
+    <string name="competitions_title">Competitions</string>
+    <string name="today_fixtures_title">Todays fixtures</string>
+</resources>

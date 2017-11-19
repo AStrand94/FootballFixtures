@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/group_standards"
+        android:checkableBehavior="single">
+        <item
+            android:checked="true"
+            android:icon="@drawable/ic_public_black_24dp"
+            android:title="@string/competitions"
+            android:id="@+id/item_competition"/>
+        <item
+            android:icon="@drawable/ic_today_black_24dp"
+            android:title="@string/todays_fixtures"
+            android:id="@+id/todays_fixtures"/>
+    </group>
+    <group
+        android:id="@+id/group_favourites"
+        android:checkableBehavior="single">
+        <item
+            android:icon="@drawable/ic_star_border_black_24dp"
+            android:title="@string/favourite_clubs"
+            android:id="@+id/favorite_clubs"/>
+
+    </group>
+</menu>

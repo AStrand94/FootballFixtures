@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="5dp"
+    android:paddingTop="5dp">
+
+    <TextView
+        android:id="@+id/standing_pos_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        android:text="1."
+        android:width="30dp"
+        android:maxWidth="30dp"/>
+
+    <TextView
+        android:id="@+id/standing_name_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/standing_pos_textview"
+        android:width="250dp"
+        android:maxWidth="250dp"
+        android:text="West Bromwich Albion FCFCFC"
+        android:textColor="#000"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/standing_stat_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10 10 0  0   30"
+        android:textSize="17sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/standing_name_textview" />
+
+
+</RelativeLayout>
