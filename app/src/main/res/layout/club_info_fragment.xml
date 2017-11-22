@@ -9,7 +9,6 @@
         android:maxHeight="300dp"
         android:maxWidth="300dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/my_toolbar_club"
         android:adjustViewBounds="true"/>
 
     <TextView
@@ -27,7 +26,6 @@
         android:id="@+id/club_name_short_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="liverpool"
         android:layout_marginStart="13dp"
         android:layout_alignBaseline="@+id/club_name_short_label"
         android:layout_alignBottom="@+id/club_name_short_label"
@@ -48,7 +46,6 @@
         android:id="@+id/club_name_long_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="lfc"
         android:layout_marginTop="34dp"
         android:layout_below="@+id/image_club_logo"
         android:layout_alignEnd="@+id/club_name_short_text" />

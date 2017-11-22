@@ -6,13 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.astrand.footballfixtures.activities.ClubFixturesActivity;
 import com.example.astrand.footballfixtures.rest_service.HttpErrorHandler;
 import com.example.astrand.footballfixtures.R;
-import com.example.astrand.footballfixtures.activities.ClubInfoActivity;
 import com.example.astrand.footballfixtures.adapters.LeagueTableAdapter;
 import com.example.astrand.footballfixtures.entities.LeagueTable;
 import com.example.astrand.footballfixtures.entities.Standing;
@@ -30,7 +28,6 @@ public class LeagueTableFragment extends ListFragment {
 
     private int matchday;
     private boolean listCreated = false;
-    private LeagueTableAdapter adapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

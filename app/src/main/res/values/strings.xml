@@ -23,4 +23,5 @@
     <string name="today_fixtures_title">Todays fixtures</string>
     <string name="this_timezone">Europe/Copenhagen</string>
     <string name="info">Info</string>
+    <string name="team">Team</string>
 </resources>

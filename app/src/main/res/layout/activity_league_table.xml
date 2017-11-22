@@ -67,11 +67,11 @@
                 android:id="@+id/team_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:text="Team"/>
+                android:layout_marginStart="30dp"
+                android:text="@string/team"/>
 
             <TextView
-                android:layout_marginLeft="220dp"
+                android:layout_marginStart="220dp"
                 android:id="@+id/stat_table_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -100,7 +100,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="Matchday 0"
                 android:visibility="invisible"/>
             <Button
                 android:id="@+id/matchday_nav_btn_2"

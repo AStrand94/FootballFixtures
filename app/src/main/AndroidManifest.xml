@@ -17,7 +17,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.LeagueTableActivity" android:parentActivityName=".activities.MainActivity"/>
-        <activity android:name=".activities.ClubInfoActivity" android:parentActivityName=".activities.LeagueTableActivity"/>
         <activity android:name=".activities.ClubFixturesActivity" android:parentActivityName=".activities.MainActivity"/>
         <activity android:name=".activities.ChampionsLeagueActivity" android:parentActivityName=".activities.MainActivity"/>
     </application>

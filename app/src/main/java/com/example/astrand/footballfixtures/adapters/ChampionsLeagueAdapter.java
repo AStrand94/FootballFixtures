@@ -28,7 +28,7 @@ public class ChampionsLeagueAdapter extends ArrayAdapter<ChampionsLeagueIF> {
 
     static {
         WHITE = Color.parseColor("#ffffff");
-        GREY = Color.parseColor("#696969");
+        GREY = Color.parseColor("#d3d3d3");
     }
 
     private List<ChampionsLeagueIF> list;

@@ -17,7 +17,6 @@ import com.caverock.androidsvg.SVGImageView;
 import com.caverock.androidsvg.SVGParseException;
 import com.example.astrand.footballfixtures.R;
 import com.example.astrand.footballfixtures.activities.ClubFixturesActivity;
-import com.example.astrand.footballfixtures.activities.ClubInfoActivity;
 import com.example.astrand.footballfixtures.entities.Club;
 import com.example.astrand.footballfixtures.helpers.FavoriteClubHelper;
 import com.example.astrand.footballfixtures.rest_service.FootballRestClientHelper;

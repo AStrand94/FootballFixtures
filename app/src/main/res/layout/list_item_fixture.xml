@@ -9,7 +9,6 @@
         android:id="@+id/fixture_home_team_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Liverpool FC"
         android:textSize="15sp"
         android:textColor="#000"
         android:layout_alignBottom="@+id/fixture_result_textview"
@@ -19,7 +18,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="3 - 0"
         android:textSize="20sp"
         android:textColor="#000"
         android:id="@+id/fixture_result_textview"
@@ -29,7 +27,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Manchester United FC"
         android:textColor="#000"
         android:textSize="15sp"
         android:id="@+id/fixture_away_team_textview"
