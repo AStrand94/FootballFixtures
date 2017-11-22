@@ -1,8 +1,5 @@
 package com.example.astrand.footballfixtures.entities.cl_entities;
 
-/**
- * Created by strand117 on 16.11.2017.
- */
 
 public class ChampionsLeagueGroup implements ChampionsLeagueIF{
 

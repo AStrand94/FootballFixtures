@@ -33,8 +33,8 @@ public class CompetitionAdapter extends ArrayAdapter<Competition> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_competition,parent,false);
         }
 
-        if (position % 2 == 0) convertView.setBackgroundColor(Color.LTGRAY);
-        else convertView.setBackgroundColor(Color.WHITE);
+        //if (position % 2 == 0) convertView.setBackgroundColor(Color.LTGRAY);
+        //else convertView.setBackgroundColor(Color.WHITE);
 
         TextView textView = convertView.findViewById(R.id.competition_caption);
 

@@ -1,6 +1,5 @@
 package com.example.astrand.footballfixtures.activities;
 
-import android.app.ListActivity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.widget.ListView;
 
+import com.example.astrand.footballfixtures.rest_service.HttpErrorHandler;
 import com.example.astrand.footballfixtures.R;
 import com.example.astrand.footballfixtures.adapters.ChampionsLeagueAdapter;
 import com.example.astrand.footballfixtures.entities.cl_entities.ChampionsLeague;
@@ -39,20 +39,19 @@ public class ChampionsLeagueActivity extends AppCompatActivity {
 
         @Override
         public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-            Log.d("ChampionsLeagueActivity","EXCEPTION OCCURRED: " + throwable.toString());
+            HttpErrorHandler.handle(ChampionsLeagueActivity.this,throwable);
         }
 
         @Override
         public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-            Log.d("ChampionsLeagueActivity","EXCEPTION OCCURRED: " + throwable.toString());
+            HttpErrorHandler.handle(ChampionsLeagueActivity.this,throwable);
         }
 
         @Override
         public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-            Log.d("ChampionsLeagueActivity","EXCEPTION OCCURRED: " + throwable.toString());
+            HttpErrorHandler.handle(ChampionsLeagueActivity.this,throwable);
         }
     };
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

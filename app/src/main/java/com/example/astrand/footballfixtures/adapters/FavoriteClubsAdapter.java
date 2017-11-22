@@ -28,14 +28,13 @@ public class FavoriteClubsAdapter extends ArrayAdapter<Club> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-
         Club club = getItem(position);
 
         if (convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_competition,parent,false);
         }
 
-        if (position % 2 == 0) convertView.setBackgroundColor(Color.LTGRAY);
+        //if (position % 2 == 0) convertView.setBackgroundColor(Color.LTGRAY);
 
         TextView textView = convertView.findViewById(R.id.competition_caption);
 

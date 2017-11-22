@@ -18,6 +18,7 @@ import com.example.astrand.footballfixtures.entities.Result;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 
 public class FixtureAdapter extends ArrayAdapter<Fixture> {
@@ -43,6 +44,8 @@ public class FixtureAdapter extends ArrayAdapter<Fixture> {
             convertView = LayoutInflater.from(getContext()).inflate(resource,parent,false);
         }
 
+        convertView.setClickable(false);
+
 
         if (fixture != null) {
             //if (position % 2 == 0) convertView.setBackgroundColor(Color.LTGRAY);
@@ -56,7 +59,9 @@ public class FixtureAdapter extends ArrayAdapter<Fixture> {
             homeText.setText(fixture.getHomeTeamName());
             resultText.setText(getResult(fixture));
             awayText.setText(fixture.getAwayTeamName());
-            dateText.setText(new SimpleDateFormat("dd.MM.yy HH:mm", Locale.US).format(fixture.getDate()));
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yy HH:mm",Locale.GERMANY);
+            dateFormat.setTimeZone(TimeZone.getTimeZone(getContext().getString(R.string.this_timezone)));
+            dateText.setText(dateFormat.format(fixture.getDate()));
             statusText.setText(getStatus(fixture,getContext()));
         }
 

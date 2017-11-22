@@ -1,13 +1,13 @@
-package com.example.astrand.footballfixtures.activities;
+package com.example.astrand.footballfixtures.fragments;
 
-import android.content.Intent;
+import android.app.Fragment;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -15,11 +15,13 @@ import android.widget.TextView;
 import com.caverock.androidsvg.SVG;
 import com.caverock.androidsvg.SVGImageView;
 import com.caverock.androidsvg.SVGParseException;
-import com.example.astrand.footballfixtures.rest_service.HttpErrorHandler;
-import com.example.astrand.footballfixtures.helpers.FavoriteClubHelper;
 import com.example.astrand.footballfixtures.R;
+import com.example.astrand.footballfixtures.activities.ClubFixturesActivity;
+import com.example.astrand.footballfixtures.activities.ClubInfoActivity;
 import com.example.astrand.footballfixtures.entities.Club;
+import com.example.astrand.footballfixtures.helpers.FavoriteClubHelper;
 import com.example.astrand.footballfixtures.rest_service.FootballRestClientHelper;
+import com.example.astrand.footballfixtures.rest_service.HttpErrorHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.TextHttpResponseHandler;
 import com.squareup.picasso.Picasso;
@@ -29,48 +31,50 @@ import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
-public class ClubInfoActivity extends AppCompatActivity {
+
+public class ClubInfoFragment extends Fragment {
 
     SVGImageView clubLogo;
     TextView clubnameLong, clubnameShort;
     Switch favouriteSwitch;
     private String selfLink;
     private Club club;
+    View currView;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
 
-        setContentView(R.layout.activity_club_info);
-        setSupportActionBar((Toolbar) findViewById(R.id.my_toolbar_club));
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-        clubLogo = (SVGImageView) findViewById(R.id.image_club_logo);
+        if (currView != null) return currView;
+        View view = inflater.inflate(R.layout.club_info_fragment,null,false);
+
+        clubLogo = view.findViewById(R.id.image_club_logo);
         clubLogo.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
-        clubnameLong = (TextView) findViewById(R.id.club_name_long_text);
-        clubnameShort = (TextView) findViewById(R.id.club_name_short_text);
-        favouriteSwitch = (Switch) findViewById(R.id.favourite_switch);
+        clubnameLong = view.findViewById(R.id.club_name_long_text);
+        clubnameShort = view.findViewById(R.id.club_name_short_text);
+        favouriteSwitch = view.findViewById(R.id.favourite_switch);
 
+        selfLink = getArguments().getString("self_link");
+        favouriteSwitch.setChecked(FavoriteClubHelper.isFavorite(getContext(),selfLink));
         initListeners();
-
-        if(getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        Intent intent = getIntent();
-        if (savedInstanceState != null){
-            selfLink = savedInstanceState.getString("selfLink");
-        }else {
-            selfLink = intent.getStringExtra("selfLink");
-        }
-
-        favouriteSwitch.setChecked(FavoriteClubHelper.isFavorite(this,selfLink));
-
         createClubView();
+
+
+        currView = view;
+        return view;
+
     }
 
     private void initListeners(){
         favouriteSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                FavoriteClubHelper.updateFavoriteClub(ClubInfoActivity.this,isChecked,selfLink);
+                FavoriteClubHelper.updateFavoriteClub(getContext(),isChecked,selfLink);
             }
         });
     }
@@ -82,29 +86,33 @@ public class ClubInfoActivity extends AppCompatActivity {
         FootballRestClientHelper.get(selfLink,new JsonHttpResponseHandler() {
 
             @Override
-            public void onSuccess(int statusCode, Header[] headers,final JSONObject response) {
+            public void onSuccess(int statusCode, Header[] headers, final JSONObject response) {
                 createClubView(Club.create(response));
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                HttpErrorHandler.handle(ClubInfoActivity.this,throwable);
+                HttpErrorHandler.handle(getActivity(),throwable);
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                HttpErrorHandler.handle(ClubInfoActivity.this,throwable);
+                HttpErrorHandler.handle(getActivity(),throwable);
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                HttpErrorHandler.handle(ClubInfoActivity.this,throwable);
+                HttpErrorHandler.handle(getActivity(),throwable);
             }
         });
     }
 
     private void createClubView(Club club){
+
+        updateActivityFixturesLink(club);
+
         this.club = club;
+        //getActivity().setTitle(club.getClubName());
 
         clubnameLong.setText(club.getClubName());
         clubnameShort.setText(club.getClubCode());
@@ -120,8 +128,14 @@ public class ClubInfoActivity extends AppCompatActivity {
         }
     }
 
+    private void updateActivityFixturesLink(Club club) {
+        if (getActivity() instanceof ClubFixturesActivity){
+            ((ClubFixturesActivity)getActivity()).setFixturesLink(club.getFixturesLink());
+        }
+    }
+
     private void loadCrestImagePNG(String crestUrl) {
-        Picasso.with(getApplicationContext()).load(crestUrl).into(clubLogo);
+        Picasso.with(getContext()).load(crestUrl).into(clubLogo);
     }
 
     private void loadCrestImageSVG(String imageUrl){
@@ -150,11 +164,5 @@ public class ClubInfoActivity extends AppCompatActivity {
 
     private void updateImageView(Drawable drawable){
         clubLogo.setImageDrawable(drawable);
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString("selfLink",selfLink);
     }
 }

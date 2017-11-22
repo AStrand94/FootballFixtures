@@ -58,4 +58,9 @@ public class FootballRestClientHelper {
     private static String getClubInfoUrl(int clubId){
         return BASE_URL + TEAM_URL + "/" + clubId;
     }
+
+    public static String getTeamFixtureLink(int clubId){
+        return BASE_URL + TEAM_URL + "/" + clubId + FIXTURE_URL;
+                //http://api.football-data.org/v1/teams/65/fixtures
+    }
 }

@@ -20,7 +20,14 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             android:contentInsetLeft="0dp"
             android:contentInsetStart="0dp"
-            />
+            >
+            <ImageView
+                android:src="@drawable/app_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                />
+        </android.support.v7.widget.Toolbar>
         <android.support.design.widget.TabLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,6 +56,28 @@
         android:orientation="vertical"
         android:divider="?android:dividerHorizontal"
         android:showDividers="end">
+
+        <LinearLayout
+            android:id="@+id/league_table_stat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#696969">
+
+            <TextView
+                android:id="@+id/team_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="Team"/>
+
+            <TextView
+                android:layout_marginLeft="220dp"
+                android:id="@+id/stat_table_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="P    W   D   L   TOT"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/league_table_nav_matchday"
@@ -82,8 +111,6 @@
                 android:visibility="invisible"/>
 
         </LinearLayout>
-
-
     </LinearLayout>
 
     <FrameLayout

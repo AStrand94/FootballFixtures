@@ -3,9 +3,8 @@ package com.example.astrand.footballfixtures.fragments;
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
-import com.example.astrand.footballfixtures.R;
+import com.example.astrand.footballfixtures.rest_service.HttpErrorHandler;
 import com.example.astrand.footballfixtures.adapters.FixtureAdapter;
 import com.example.astrand.footballfixtures.entities.Fixture;
 import com.example.astrand.footballfixtures.rest_service.FootballRestClientHelper;
@@ -103,17 +102,17 @@ public class FixturesFragment extends ListFragment {
 
         @Override
         public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-            Log.d("LeagueTableActivity", "EXCEPTION OCCURRED: " + throwable.toString());
+            HttpErrorHandler.handle(getActivity(),throwable);
         }
 
         @Override
         public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-            Log.d("LeagueTableActivity", "EXCEPTION OCCURRED: " + throwable.toString());
+            HttpErrorHandler.handle(getActivity(),throwable);
         }
 
         @Override
         public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-            Log.d("LeagueTableActivity", "EXCEPTION OCCURRED: " + throwable.toString());
+            HttpErrorHandler.handle(getActivity(),throwable);
         }
     };
 }

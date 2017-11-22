@@ -21,4 +21,6 @@
     <string name="favorite_clubs_title">Favorite clubs</string>
     <string name="competitions_title">Competitions</string>
     <string name="today_fixtures_title">Todays fixtures</string>
+    <string name="this_timezone">Europe/Copenhagen</string>
+    <string name="info">Info</string>
 </resources>

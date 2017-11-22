@@ -47,6 +47,8 @@ public class ChampionsLeagueAdapter extends ArrayAdapter<ChampionsLeagueIF> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_league_table, parent, false);
         }
 
+        convertView.setClickable(false);
+
         TextView positionText = convertView.findViewById(R.id.standing_pos_textview);
         TextView nameText = convertView.findViewById(R.id.standing_name_textview);
         TextView statText = convertView.findViewById(R.id.standing_stat_textview);

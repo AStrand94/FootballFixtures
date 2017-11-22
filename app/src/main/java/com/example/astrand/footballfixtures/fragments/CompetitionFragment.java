@@ -4,12 +4,12 @@ import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.example.astrand.footballfixtures.rest_service.HttpErrorHandler;
 import com.example.astrand.footballfixtures.R;
 import com.example.astrand.footballfixtures.activities.ChampionsLeagueActivity;
 import com.example.astrand.footballfixtures.activities.LeagueTableActivity;
@@ -22,7 +22,7 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
@@ -56,7 +56,9 @@ public class CompetitionFragment extends ListFragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            populateList(Competition.create(response));
+                            List<Competition> competitions = Competition.create(response);
+                            trimCompetitions(competitions);
+                            populateList(competitions);
                             listCreated = true;
                         }
                     });
@@ -65,19 +67,30 @@ public class CompetitionFragment extends ListFragment {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                Log.d("CompetitionFragment","EXCEPTION OCCURRED: " + throwable.toString());
+                HttpErrorHandler.handle(getActivity(),throwable);
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                Log.d("CompetitionFragment","EXCEPTION OCCURRED: " + throwable.toString());
+                HttpErrorHandler.handle(getActivity(),throwable);
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                Log.d("CompetitionFragment","EXCEPTION OCCURRED: " + throwable.toString());
+                HttpErrorHandler.handle(getActivity(),throwable);
             }
         });
+    }
+
+    private void trimCompetitions(List<Competition> competitions) {
+        List<Competition> temp = new ArrayList<>();
+        for (Competition competition : competitions){
+            if (competition.getLeague().equals("AAL") || competition.getLeague().equals("DFB")){
+                temp.add(competition);
+            }
+        }
+
+        competitions.removeAll(temp);
     }
 
     private void populateList(List<Competition> competitions){

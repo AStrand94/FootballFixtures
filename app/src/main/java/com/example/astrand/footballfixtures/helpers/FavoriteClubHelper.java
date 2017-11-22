@@ -1,8 +1,10 @@
-package com.example.astrand.footballfixtures;
+package com.example.astrand.footballfixtures.helpers;
 
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import com.example.astrand.footballfixtures.R;
 
 import java.util.HashSet;
 import java.util.Set;

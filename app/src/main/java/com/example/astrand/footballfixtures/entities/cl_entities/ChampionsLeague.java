@@ -1,8 +1,6 @@
 package com.example.astrand.footballfixtures.entities.cl_entities;
 
 
-import com.example.astrand.footballfixtures.entities.Competition;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -86,17 +84,6 @@ public class ChampionsLeague {
             cl.setChampionsLeagueIFs(list);
 
             return cl;
-        }
-
-        //Per group
-        static ChampionsLeagueIF create(JSONArray jsonArray) throws JSONException{
-
-            return null;
-        }
-
-        //Per team
-        static ChampionsLeagueIF create(JSONObject jsonObject) throws JSONException{
-            return null;
         }
     }
 }

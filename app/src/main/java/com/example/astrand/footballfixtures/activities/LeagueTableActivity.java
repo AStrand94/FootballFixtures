@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.astrand.footballfixtures.R;
@@ -16,6 +17,8 @@ import com.example.astrand.footballfixtures.R;
 import com.example.astrand.footballfixtures.fragments.FixturesFragment;
 import com.example.astrand.footballfixtures.fragments.LeagueTableFragment;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 
 public class LeagueTableActivity extends AppCompatActivity {
@@ -23,6 +26,7 @@ public class LeagueTableActivity extends AppCompatActivity {
     private TabLayout tableTab;
     private Button navBtnNeg, navBtnPos;
     private TextView matchdayCounterText;
+    private LinearLayout statLayout;
 
     private int leagueID;
     private int matchday = - 1;
@@ -65,6 +69,7 @@ public class LeagueTableActivity extends AppCompatActivity {
         navBtnNeg = (Button)findViewById(R.id.matchday_nav_btn_1);
         navBtnPos = (Button)findViewById(R.id.matchday_nav_btn_2);
         matchdayCounterText = (TextView)findViewById(R.id.matchday_nav_count);
+        statLayout =(LinearLayout) findViewById(R.id.league_table_stat);
 
 
         setListeners();
@@ -149,11 +154,15 @@ public class LeagueTableActivity extends AppCompatActivity {
     }
 
     private void setNavBtnVisibility(boolean visible){
-        int vis = visible ? View.VISIBLE : View.GONE;
+        int vis = visible ? View.VISIBLE : GONE;
+        int notVis = visible ? GONE : VISIBLE;
         navBtnNeg.setVisibility(vis);
         navBtnPos.setVisibility(vis);
         matchdayCounterText.setVisibility(vis);
+
+        statLayout.setVisibility(notVis);
     }
+
 
     private FixturesFragment getFixturesFragment(){
         if(fixturesFragment == null){

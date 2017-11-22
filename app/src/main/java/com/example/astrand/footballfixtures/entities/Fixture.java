@@ -111,7 +111,7 @@ public class Fixture {
 
             try {
                 if (jsonObject.has("date")) {
-                    fixture.date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.GERMAN).parse(jsonObject.getString("date"));
+                    fixture.date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.UK).parse(jsonObject.getString("date"));
                 }
             }catch (ParseException pe){
                 pe.printStackTrace();

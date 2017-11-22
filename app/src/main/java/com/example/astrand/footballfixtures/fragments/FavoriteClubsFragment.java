@@ -7,7 +7,8 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ListView;
 
-import com.example.astrand.footballfixtures.FavoriteClubHelper;
+import com.example.astrand.footballfixtures.rest_service.HttpErrorHandler;
+import com.example.astrand.footballfixtures.helpers.FavoriteClubHelper;
 import com.example.astrand.footballfixtures.R;
 import com.example.astrand.footballfixtures.activities.ClubFixturesActivity;
 import com.example.astrand.footballfixtures.activities.MainActivity;
@@ -69,6 +70,21 @@ public class FavoriteClubsFragment extends ListFragment {
                 public void onSuccess(int statusCode, Header[] headers, String responseString) {
                     super.onSuccess(statusCode, headers, responseString);
                 }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                    HttpErrorHandler.handle(getActivity(),throwable);
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    HttpErrorHandler.handle(getActivity(),throwable);
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                    HttpErrorHandler.handle(getActivity(),throwable);
+                }
             });
         }
     }
@@ -87,6 +103,8 @@ public class FavoriteClubsFragment extends ListFragment {
         Club club = (Club)getListAdapter().getItem(position);
         Intent intent = new Intent(getActivity(),ClubFixturesActivity.class);
         intent.putExtra("fixtures_link",club.getFixturesLink());
+        intent.putExtra("self_link",club.getSelfLink());
+        intent.putExtra("club_name",club.getClubName());
         getActivity().startActivity(intent);
     }
 
